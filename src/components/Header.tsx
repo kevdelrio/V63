@@ -7,6 +7,8 @@ const Logo = () => (
         <img
             src="/assets/logo.png"
             alt="KD Expertise"
+            width={64}
+            height={64}
             className="h-16 w-auto sm:h-20"
         />
         <span className="sr-only">KD Expertise</span>
@@ -58,12 +60,18 @@ const Header: React.FC = () => {
                         Contactez-moi
                     </a>
                 </nav>
-                <button onClick={toggleMenu} aria-label="Ouvrir le menu" className="lg:hidden text-blue-deep focus:outline-none">
+                <button
+                    onClick={toggleMenu}
+                    aria-label="Ouvrir le menu"
+                    aria-expanded={isMenuOpen}
+                    aria-controls="mobile-menu"
+                    className="lg:hidden text-blue-deep focus:outline-none"
+                >
                     {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
                 </button>
             </div>
             {isMenuOpen && (
-                <nav className="absolute top-full left-0 right-0 bg-white shadow-lg py-4 lg:hidden">
+                <nav className="absolute top-full left-0 right-0 bg-white shadow-lg py-4 lg:hidden" id="mobile-menu">
                     {NAV_LINKS.map((link) => (
                         <a key={link.name} href={link.href} className="block text-center py-2 font-semibold text-blue-deep hover:text-orange-vif transition-colors duration-200" onClick={() => setIsMenuOpen(false)}>
                             {link.name}

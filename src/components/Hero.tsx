@@ -17,6 +17,8 @@ const Hero: React.FC = () => {
                     https://images.unsplash.com/photo-1582407947304-fd86f028f716?q=80&w=1920&auto=format&fit=crop 1920w
                 "
                 sizes="100vw"
+                width={1920}
+                height={1280}
                 alt="Maison moderne"
                 className="absolute inset-0 w-full h-full object-cover z-0 rounded-b-2xl"
                 loading="lazy"
