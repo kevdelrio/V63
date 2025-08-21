@@ -1,4 +1,5 @@
 import React from 'react';
+import { reportConversion, PHONE_CONVERSION_LABEL } from '@/services/googleAds';
 
 const LogoWhite = () => (
     <a href="#Home" className="text-3xl font-extrabold tracking-tight text-white flex items-center gap-2">
@@ -7,6 +8,10 @@ const LogoWhite = () => (
 );
 
 const Footer: React.FC = () => {
+    const handlePhoneClick = () => {
+        reportConversion(PHONE_CONVERSION_LABEL);
+    };
+
     return (
         <footer className="bg-blue-deep text-slate-300 rounded-t-2xl shadow-2xl mt-16">
             <div className="max-w-7xl mx-auto px-6 py-14">
@@ -27,7 +32,13 @@ const Footer: React.FC = () => {
                             <p>1470 Genappe, Belgique</p>
                             <p>
                                 <span className="font-medium text-white">Tél :</span>{' '}
-                                <a href="tel:+32470941588" className="hover:text-orange-vif transition">0470 94 15 88</a>
+                                <a
+                                    href="tel:+32470941588"
+                                    onClick={handlePhoneClick}
+                                    className="hover:text-orange-vif transition"
+                                >
+                                    0470 94 15 88
+                                </a>
                             </p>
                             <p>
                                 <span className="font-medium text-white">Email :</span>{' '}

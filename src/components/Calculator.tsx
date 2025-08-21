@@ -4,6 +4,7 @@ import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 import { CalculatorState, CalculatorContact } from '@/types';
 import { CALCULATOR_STEPS, PRICE_MAP, PRICE_MODIFIERS } from '@/constants';
 import { sendMail } from '@/services/firebaseMail';
+import { reportConversion, FORM_CONVERSION_LABEL } from '@/services/googleAds';
 
 /* ────────────────────────────────────────────────────────────────────────── */
 /* CONFIG & HELPERS                                                          */
@@ -107,7 +108,7 @@ const readPriceFromMap = (
   if (state.mission === 'locatif') {
     let typeKey: 'appartement' | 'maison' | 'entrepot' = 'appartement';
     if (state.typeBien === 'maison') typeKey = 'maison';
-    if (state.typeBien === 'entrepot' || state.typeBien === 'commercial') typeKey = 'entrepot';
+    if ((state.typeBien as any) === 'entrepot' || (state.typeBien as any) === 'commercial') typeKey = 'entrepot';
     if (state.typeBien === 'studio' || state.typeBien === 'kot') typeKey = 'appartement';
 
     if (typeKey === 'entrepot') {
@@ -423,6 +424,7 @@ const CalculatorForm: React.FC = () => {
         appointment: `${rdvDate} ${rdvHeure}`.trim(),
       });
 
+      reportConversion(FORM_CONVERSION_LABEL);
       alert('Demande envoyée avec succès.');
       
       setCurrentStep(0); // Optionnel: revenir à la première étape après l'envoi
@@ -835,7 +837,7 @@ const CalculatorForm: React.FC = () => {
 /* WRAPPER                                                                    */
 /* ────────────────────────────────────────────────────────────────────────── */
 const Calculator: React.FC = () => {
-  const [ref, isVisible] = useIntersectionObserver({ threshold: 0.1 });
+  const [ref, isVisible] = useIntersectionObserver();
 
   return (
     <section id="Calculator" ref={ref as React.RefObject<HTMLElement>} className={`bg-white py-12 md:py-20 px-6 transition-all duration-1000 ease-out scroll-mt-24 ${ isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10' }`}>
