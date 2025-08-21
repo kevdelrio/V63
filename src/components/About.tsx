@@ -13,7 +13,13 @@ const About: React.FC = () => {
                 </div>
                 <div className="flex flex-col md:flex-row items-center gap-12">
                     <div className="md:w-1/3 relative">
-                        <img src="https://dl.dropboxusercontent.com/scl/fi/u62dhrr9b2cml4578tnap/2025-07-31-12_55_51-IMG_0362.heic-FastStone-Image-Viewer-7.8.png?rlkey=odrja1xhoc7lt5i141vpgnewk&raw=1" alt="Portrait de Kévin Delporte, Géomètre-Expert" />
+                        <img
+                            src="/assets/about.svg"
+                            width={400}
+                            height={300}
+                            loading="lazy"
+                            alt="Portrait de Kévin Delporte, Géomètre-Expert"
+                        />
                         <div className="absolute -bottom-6 -right-6 bg-blue-deep text-white rounded-lg shadow-lg px-4 py-3">
                             <p className="font-semibold leading-tight">Géomètre‑expert assermenté</p>
                             <p className="text-sm">Geo 19/1470</p>
